@@ -2,6 +2,8 @@
 
     //vaiables
     let alert = document.getElementById("alert");
+    let img1 = document.querySelector(".image1");
+    let img2 = document.querySelector(".image2");
 
     let player1 = '';
     let player2 = "Computer";
@@ -13,14 +15,22 @@
                 if (i === 0){
                     //begin button
                     console.log("begin button");
-                    alertUser();
+                    promptUser();
+                    alertUser("Pick a guess (head or tail) 30 seconds remaining");
                     beginGuess();
+
                 }else if(i === 1){
                     //head coin
-                    console.log("head button")
+                    console.log("head button");
+                    alertUser("You Guessed Head ");
+                    img1.style.opacity = 9;
+                    img2.style.opacity = 0;
                 }else{
                     //tail coin
-                    console.log("tail button")
+                    console.log("tail button");
+                    alertUser("You Guessed Tail");
+                    img2.style.opacity = 9;
+                    img1.style.opacity = 0;
                 }
             });
         });
@@ -28,11 +38,16 @@
 
 
     //methods
-    const alertUser = () => {
-
+    const promptUser = () => {
         player1 +=  prompt("Enter your name to begin: ");
        console.log(player1);
         [...document.querySelectorAll(".username")].forEach(unit => unit.textContent = player1);
+
+    }
+
+    //alert user
+    const alertUser = (text) => {
+        alert.textContent = text;
     }
 
     //guess logic
@@ -54,7 +69,7 @@
             }else{
                 //last round
             }
-            alert.textContent = "Game Completed";
+            //alert.textContent = "Game Completed";
             console.log(no_of_rounds);
             no_of_rounds++;
         }
