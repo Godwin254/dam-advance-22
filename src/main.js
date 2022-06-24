@@ -29,7 +29,8 @@
                     console.log("restart button");
                     alertUser("Restarted game");
                     resultAlert.textContent = "Congratulation for completing the game";
-                    [...document.querySelectorAll(".username")].forEach(unit => unit.innerHTML = 'PLAYER');
+                    [...document.querySelectorAll(".username")]
+                        .forEach((unit, i) => (i == 0) ? unit.innerHTML = 'PLAYER' : unit.innerHTML = 'User' );
                    
                 }
             });
