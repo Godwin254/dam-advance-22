@@ -58,14 +58,25 @@
             font-weight: bold;
             padding: 0 1rem;
         }
-
-        h2{
-            padding: 1.5rem 1rem;
-            font-size: 2rem;
-            color: rgb(161, 159, 159);
+        .user{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            h2{
+                padding: 1.5rem 1rem;
+                font-size: 2rem;
+                color: rgb(161, 159, 159);
+            }
+            .sc{
+                padding: 1.5rem 1rem;
+                font-size: 2rem;
+                color: rgb(161, 159, 159);
+            }
         }
     }
-    span{
+    .copyright{
         text-align: center;
         margin-top: 5rem;
         b{

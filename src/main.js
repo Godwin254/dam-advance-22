@@ -29,6 +29,7 @@
                     console.log("restart button");
                     alertUser("Restarted game");
                     resultAlert.textContent = "Congratulation for completing the game";
+                    [...document.querySelectorAll(".username")].forEach(unit => unit.innerHTML = '');
                    
                 }
             });
@@ -40,7 +41,7 @@
     const promptUser = () => {
         player1 +=  prompt("Enter your name to begin: ");
        console.log(player1);
-        [...document.querySelectorAll(".username")].forEach(unit => unit.textContent = player1);
+        [...document.querySelectorAll(".username")].forEach(unit => unit.innerHTML = player1);
 
     }
 

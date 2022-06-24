@@ -60,16 +60,28 @@
   font-weight: bold;
   padding: 0 1rem;
 }
-.left-side .scoreboard h2 {
+.left-side .scoreboard .user {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.left-side .scoreboard .user h2 {
   padding: 1.5rem 1rem;
   font-size: 2rem;
   color: rgb(161, 159, 159);
 }
-.left-side span {
+.left-side .scoreboard .user .sc {
+  padding: 1.5rem 1rem;
+  font-size: 2rem;
+  color: rgb(161, 159, 159);
+}
+.left-side .copyright {
   text-align: center;
   margin-top: 5rem;
 }
-.left-side span b {
+.left-side .copyright b {
   color: orange;
 }
 
