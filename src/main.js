@@ -2,6 +2,7 @@
 
     //vaiables
     let alert = document.getElementById("alert");
+    let resultAlert = document.querySelector(".results");
     let img1 = document.querySelector(".image1");
     let img2 = document.querySelector(".image2");
 
@@ -16,21 +17,19 @@
                     //begin button
                     console.log("begin button");
                     promptUser();
-                    alertUser("Pick a guess (head or tail) 30 seconds remaining");
+                    alertUser("Click start button flip coin!");
                     beginGuess();
 
                 }else if(i === 1){
-                    //head coin
-                    console.log("head button");
-                    alertUser("You Guessed Head ");
-                    img1.style.opacity = 9;
-                    img2.style.opacity = 0;
+                    //start flip
+                    console.log("start button");
+                    alertUser("Coin flip started ");
                 }else{
-                    //tail coin
-                    console.log("tail button");
-                    alertUser("You Guessed Tail");
-                    img2.style.opacity = 9;
-                    img1.style.opacity = 0;
+                    //stop flip
+                    console.log("restart button");
+                    alertUser("Restarted game");
+                    resultAlert.textContent = "Congratulation for completing the game";
+                   
                 }
             });
         });
@@ -69,9 +68,10 @@
             }else{
                 //last round
             }
-            //alert.textContent = "Game Completed";
+            //resultAlert.textContent = "Congratulation for completing the game";
             console.log(no_of_rounds);
-            no_of_rounds++;
+
+            no_of_rounds++; //increament no_of_rounds
         }
 
         //update scores
