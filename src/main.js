@@ -6,8 +6,13 @@
     let img1 = document.querySelector(".image1");
     let img2 = document.querySelector(".image2");
 
-    let player1 = '';
-    let player2 = "Computer";
+    let user = '';
+    let comp = "Computer";
+    let userScore = 0;
+    let compScore = 0;
+    let user_flip;
+    let comp_flip = Math.floor(Math.random() * 5 +2);
+    let rounds = 1;
     //let name = document.querySelectorAll(".username");
     window.addEventListener('DOMContentLoaded', () => {
         [...document.querySelectorAll(".btn")].forEach((button, i) => {
@@ -17,21 +22,28 @@
                     //begin button
                     console.log("begin button");
                     promptUser();
-                    alertUser("Click start button flip coin!");
-                    beginGuess();
+                    alertUser("Click start button flip coin, 5 rounds to play!");
+                   // playGame();
 
                 }else if(i === 1){
                     //start flip
                     console.log("start button");
                     alertUser("Coin flip started ");
+
+                    alertUser(`Started round ${rounds}`);
+                    playGame();
+
+                    console.log(rounds);
+                    alertUser("Click button to begin next round! ");
+                    setTimeout(() => { alertUser(`Started round ${rounds}`); }, 2000);
+                    
+
+                    rounds++;
                 }else{
                     //stop flip
                     console.log("restart button");
-                    alertUser("Restarted game");
-                    resultAlert.textContent = "Congratulation for completing the game";
-                    [...document.querySelectorAll(".username")]
-                        .forEach((unit, i) => (i == 0) ? unit.innerHTML = 'PLAYER' : unit.innerHTML = 'User' );
-                   
+                    alertUser("Started Game!!");
+                    
                 }
             });
         });
@@ -40,9 +52,9 @@
 
     //methods
     const promptUser = () => {
-        player1 +=  prompt("Enter your name to begin: ");
-       console.log(player1);
-        [...document.querySelectorAll(".username")].forEach(unit => unit.innerHTML = player1);
+        user +=  prompt("Enter your name to begin: ");
+       console.log(user);
+        [...document.querySelectorAll(".username")].forEach(unit => unit.innerHTML = user);
 
     }
 
@@ -51,36 +63,59 @@
         alert.textContent = text;
     }
 
-    //guess logic
-    const beginGuess = () => {
-        let no_of_rounds = 1;
-        let turn1 = 1;
-        let turn2 = 2;
+    const winner = () => {
+        if (userScore > compScore){
+            //user wins
+            resultAlert.textContent = `Congratulations ${user}, You won with ${userScore} points!`;
+            resultAlert.style.color = "yellowgreen"
+            document.querySelector(".score1").textContent = userScore
+        }else{
+            //computer wins
+            resultAlert.textContent = `Ooops ${user},\n Computer won with ${compScore} points`;
+            document.querySelector(".score2").textContent = compScore
+        }
+    }
 
-        while(no_of_rounds <= 5){
-
-            if (no_of_rounds === 1){
-                //round 1
-            }else if (no_of_rounds === 2){
-                //round 2
-            }else if (no_of_rounds === 3){
-                //round 3
-            }else if (no_of_rounds === 4){
-                //round 4
-            }else{
-                //last round
-            }
-            //resultAlert.textContent = "Congratulation for completing the game";
-            console.log(no_of_rounds);
-
-            no_of_rounds++; //increament no_of_rounds
+    //determine coin side
+    const coinSide = (coin_side) => {
+        if (coin_side % 2 == 0){
+            //tails side
+            document.querySelector(".img").src = "../assets/images/tail-side.png";
+        }else{
+            //head side
+            document.querySelector(".img").src = "../assets/images/head-side.png";
         }
 
-        //update scores
-        const updateScores = (turn) => {
-            let score_for_player1 = 0;
-            let score_for_player2 = 0;
-            (turn === 1) ? score_for_player1++ : score_for_player2++ ;
+        return coin_side % 2;
+    }
+
+    //user turn to flip coin
+    const userTurn = () => {
+        //update user score
+        let side = coinSide(user_flip);
+        userScore += side;
+    }
+
+    const compTurn = () => {
+        //update comp score
+        let side = coinSide(comp_flip);
+        compScore += side;
+
+    }
+
+    const playGame = () => {
+        //let gameON = true;
+        
+        alertUser(`Started round ${rounds}`);
+        document.querySelector(".startbtn").style.backgroundColor = "grey";
+        user_flip = parseInt(prompt("enter number of flips"));
+        userTurn();
+        compTurn();
+        
+        //console.log("Game over");
+        if (rounds == 5){
+            winner() //
+            alertUser(`Game over`);
         }
     }
     
